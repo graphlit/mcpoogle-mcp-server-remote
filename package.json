@@ -20,7 +20,7 @@
   "license": "MIT",
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.11.1",
-    "@vercel/mcp-adapter": "^0.2.1",
+    "@vercel/mcp-adapter": "^0.2.4",
     "graphlit-client": "^1.0.20250503001",
     "next": "15.2.4",
     "redis": "^4.7.0",
