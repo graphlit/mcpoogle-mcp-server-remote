@@ -21,7 +21,7 @@
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.10.2",
     "@vercel/mcp-adapter": "^0.2.4",
-    "graphlit-client": "^1.0.20250503001",
+    "graphlit-client": "^1.0.20250508001",
     "next": "15.2.4",
     "redis": "^4.7.0",
     "zod": "^3.24.2"

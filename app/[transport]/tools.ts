@@ -24,13 +24,13 @@ export function registerTools(server: McpServer) {
 
         try {
         const filter: ContentFilter = { 
-            searchType: SearchTypes.Vector,
+            searchType: SearchTypes.Hybrid,
         };
 
         const response = await client.retrieveSources(prompt, filter, undefined, 
         { 
             type: RetrievalStrategyTypes.Section,
-            contentLimit: 25
+            contentLimit: 15
         }, 
         { 
             serviceType: RerankingModelServiceTypes.Cohere 
