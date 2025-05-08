@@ -45,9 +45,7 @@ export function registerTools(server: McpServer) {
                 text: JSON.stringify({ 
                     id: source.content?.id, 
                     relevance: source.relevance,
-                    resourceUri: `contents://${source.content?.id}`, 
-                    text: source.text, 
-                    mimeType: "text/markdown"
+                    resourceUri: `contents://${source.content?.id}`
                 }, null, 2)
             }))
         };

@@ -104,6 +104,9 @@ function formatContent(response: GetContentQuery): string {
     }
 
     // TODO: parse custom summary as JSON, format metadata
-
+    if (content.customSummary) {
+        results.push(content.customSummary);
+    }
+    
     return results.join('\n');
 }
