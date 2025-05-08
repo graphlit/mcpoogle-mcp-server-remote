@@ -27,7 +27,7 @@ export function registerTools(server: McpServer) {
 
         const response = await client.retrieveSources(prompt, filter, undefined, 
         { 
-            type: RetrievalStrategyTypes.Section,
+            type: RetrievalStrategyTypes.Content, // NOTE: Use Content retrieval strategy to return entire Markdown text
             contentLimit: 15
         }, 
         { 
