@@ -9,7 +9,7 @@ import {
 } from "graphlit-client/dist/generated/graphql-types.js";
 
 export function registerTools(server: McpServer) {
-    const tool = server.tool(
+    server.tool(
     "searchMcpServers",
     `Retrieve relevant MCP Servers and Tools from McPoogle search engine. Use this tool to find MCP Servers and Tools that match a given user prompt. The search results will include the name, description, and GitHub URL of each MCP Server.
     Accepts an LLM user prompt for content retrieval. For best retrieval quality, provide only key words or phrases from the user prompt, which will be used to create text embeddings for a vector search query.
@@ -62,12 +62,5 @@ export function registerTools(server: McpServer) {
         };
         }
     }
-    );   
-
-    // HACK: https://github.com/vercel-labs/mcp-for-next.js/issues/9
-    Object.assign(tool, {
-        inputSchema: z.object({
-            prompt: z.string().describe("LLM user prompt for MCP search.")
-        }),
-      });
+    );
 }
