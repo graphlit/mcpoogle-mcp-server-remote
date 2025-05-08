@@ -28,7 +28,7 @@ export function registerTools(server: McpServer) {
         const response = await client.retrieveSources(prompt, filter, undefined, 
         { 
             type: RetrievalStrategyTypes.Content, // NOTE: Use Content retrieval strategy to return entire Markdown text
-            contentLimit: 15
+            contentLimit: 50 // number of content sources to retrieve prior to reranking
         }, 
         { 
             serviceType: RerankingModelServiceTypes.Cohere 
