@@ -1,15 +1,27 @@
 {
-  "name": "next.js-mcp-server",
-  "version": "0.1.0",
+  "name": "mcpoogle-mcp-server",
+  "version": "1.0.0",
+  "description": "McPoogle MCP Server",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start"
   },
+  "keywords": [
+    "McPoogle",
+    "API",
+    "LLM",
+    "MCP",
+    "search",
+    "Graphlit"
+  ],
+  "author": "Unstruk Data Inc.",
+  "license": "MIT",
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.10.2",
     "@vercel/mcp-adapter": "^0.2.1",
+    "graphlit-client": "^1.0.20250503001",
     "next": "15.2.4",
     "redis": "^4.7.0",
     "zod": "^3.24.2"
