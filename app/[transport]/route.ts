@@ -5,6 +5,8 @@ import { registerResources } from './resources';
 const DEFAULT_INSTRUCTIONS = `
 You are provided a set of MCP tools and resources that integrate with the [McPoogle](https://www.mcpoogle.com) search engine for MCP Servers and Tools.
 
+Use the 'search' MCP tool to find MCP Servers and Tools that match a given user prompt. The search results will include the name, description, and GitHub URL of each MCP Server.
+
 To use each of the McPoogle MCP tools, there may be environment variables which are required to be configured in your MCP client. These are described in the description for each tool.
 These must be configured in the MCP client YAML or JSON configuration file before you can use the tools. *Do not* set these directly in your Terminal or shell environment.
 
@@ -35,9 +37,11 @@ const handler = createMcpHandler(
     instructions: DEFAULT_INSTRUCTIONS
   },
   {
+    redisUrl: process.env.REDIS_URL,
+    sseEndpoint: "/sse",
     streamableHttpEndpoint: "/mcp",
     verboseLogs: true,
-    maxDuration: 60,
+    maxDuration: 800,
   }
 );
 

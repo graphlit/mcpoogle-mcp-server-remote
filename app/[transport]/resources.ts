@@ -2,10 +2,49 @@ import { Graphlit } from "graphlit-client";
 import { McpServer, ResourceTemplate } from "@modelcontextprotocol/sdk/server/mcp.js";
 import {
     ContentTypes,
+    ContentFilter, 
+    EntityState,
     GetContentQuery,
 } from "graphlit-client/dist/generated/graphql-types.js";
 
 export function registerResources(server: McpServer) {
+
+    server.resource(
+    "Contents list: Returns list of content resources.",
+    new ResourceTemplate("contents://", {
+        list: async (extra) => {
+        const client = new Graphlit();
+        
+        const filter: ContentFilter = { 
+            states: [EntityState.Finished], // filter on finished contents only
+        };
+
+        try {
+            const response = await client.queryContents(filter);
+            
+            return {
+            resources: (response.contents?.results || [])
+                .filter(content => content !== null)
+                .map(content => ({
+                name: content.name,
+                description: content.description || '',
+                uri: `contents://${content.id}`,
+                mimeType: content.mimeType || 'text/markdown'
+                }))
+            };
+        } catch (error) {
+            console.error("Error fetching content list:", error);
+            return { resources: [] };
+        }
+        }
+    }),
+    async (uri, variables) => {
+        return {
+        contents: []
+        };
+    }
+    );
+          
     server.resource(
         "Content: Returns content metadata and complete Markdown text. Accepts content resource URI, i.e. contents://{id}, where 'id' is a content identifier.",
         new ResourceTemplate("contents://{id}", { list: undefined }),
@@ -15,8 +54,6 @@ export function registerResources(server: McpServer) {
 
             try {
                 const response = await client.getContent(id);
-
-                const content = response.content;
 
                 return {
                     contents: [

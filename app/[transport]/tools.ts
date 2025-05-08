@@ -1,4 +1,4 @@
-import { Graphlit, Types } from "graphlit-client";
+import { Graphlit } from "graphlit-client";
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { z } from "zod";
 import { 
@@ -10,15 +10,17 @@ import {
 
 export function registerTools(server: McpServer) {
     server.tool(
-    "search",
-    `Retrieve relevant content sources from McPoogle search engine. 
+    "searchMcpServers",
+    `Retrieve relevant MCP Servers and Tools from McPoogle search engine. Use this tool to find MCP Servers and Tools that match a given user prompt. The search results will include the name, description, and GitHub URL of each MCP Server.
     Accepts an LLM user prompt for content retrieval. For best retrieval quality, provide only key words or phrases from the user prompt, which will be used to create text embeddings for a vector search query.
     Returns the ranked content sources, including their content resource URI to retrieve the complete Markdown text.`,
     { 
-        prompt: z.string().describe("LLM user prompt for content retrieval."),
+        prompt: z.string().describe("LLM user prompt for MCP search.")
     },
     async ({ prompt }) => {
         const client = new Graphlit();
+
+        console.log(`searchMcpServers: ${prompt}`);
 
         try {
         const filter: ContentFilter = { 
@@ -60,5 +62,5 @@ export function registerTools(server: McpServer) {
         };
         }
     }
-    );    
+    );   
 }
