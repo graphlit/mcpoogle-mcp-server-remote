@@ -20,8 +20,6 @@ export function registerTools(server: McpServer) {
     async ({ prompt }) => {
         const client = new Graphlit();
 
-        console.log(`searchMcpServers: ${prompt}`);
-
         try {
         const filter: ContentFilter = { 
             searchType: SearchTypes.Hybrid,
@@ -45,11 +43,11 @@ export function registerTools(server: McpServer) {
                 type: "text",
                 mimeType: "application/json",
                 text: JSON.stringify({ 
-                id: source.content?.id, 
-                relevance: source.relevance,
-                resourceUri: `contents://${source.content?.id}`, 
-                text: source.text, 
-                mimeType: "text/markdown"
+                    id: source.content?.id, 
+                    relevance: source.relevance,
+                    resourceUri: `contents://${source.content?.id}`, 
+                    text: source.text, 
+                    mimeType: "text/markdown"
                 }, null, 2)
             }))
         };
