@@ -87,8 +87,6 @@ function formatContent(response: GetContentQuery): string {
     results.push(`**Content ID:** ${content.id}`);
     results.push(`**Name:** ${content.name}`);
 
-    if (content.masterUri) results.push(`**Downloadable Original:** ${content.masterUri}`);
-
     if (content.creationDate) results.push(`**Ingestion Date:** ${content.creationDate}`);
 
     // Links
@@ -103,8 +101,8 @@ function formatContent(response: GetContentQuery): string {
         results.push("\n");
     }
 
-    // TODO: parse custom summary as JSON, format metadata
     if (content.customSummary) {
+        results.push("**MCP Metadata:**");
         results.push(content.customSummary);
     }
     
