@@ -1,25 +1,24 @@
-# Example Next.js MCP Server
+# Model Context Protocol (MCP) Server for McPoogle Search Engine
 
-**Uses `@vercel/mcp-adapter`**
+## Overview
+
+McPoogle is a search engine for [MCP](https://modelcontextprotocol.io) (Model Context Protocol) Servers and Tools. 
+
+McPoogle is under active development, and released in ‘alpha’. McPoogle can make mistakes, and may have unscheduled maintenance. Uses data ingested from 7000+ GitHub MCP Server READMEs, MCP docs, and other public sources.
+
+For any questions on using the McPoogle search engine, please join our [Discord](https://discord.gg/ygFmfjy3Qx) community and post on the #mcpoogle channel.
+
+## Tools
+
+- Search MCP Servers
+
+## Installation
 
 
-## Usage
+## Support
 
-This sample app uses the [Vercel MCP Adapter](https://www.npmjs.com/package/@vercel/mcp-adapter) that allows you to drop in an MCP server on a group of routes in any Next.js project.
+Please refer to the [Graphlit API Documentation](https://docs.graphlit.dev/).
 
-Update `app/[transport]/route.ts` with your tools, prompts, and resources following the [MCP TypeScript SDK documentation](https://github.com/modelcontextprotocol/typescript-sdk/tree/main?tab=readme-ov-file#server).
+For support with the Graphlit MCP Server, please submit a [GitHub Issue](https://github.com/graphlit/graphlit-mcp-server/issues).  
 
-## Notes for running on Vercel
-
-- To use the SSE transport, requires a Redis attached to the project under `process.env.REDIS_URL`
-- Make sure you have [Fluid compute](https://vercel.com/docs/functions/fluid-compute) enabled for efficient execution
-- After enabling Fluid compute, open `app/route.ts` and adjust `maxDuration` to 800 if you using a Vercel Pro or Enterprise account
-- [Deploy the Next.js MCP template](https://vercel.com/templates/next.js/model-context-protocol-mcp-with-next-js)
-
-## Sample Client
-
-`script/test-client.mjs` contains a sample client to try invocations.
-
-```sh
-node scripts/test-client.mjs https://mcp-for-next-js.vercel.app
-```
+For further support with the Graphlit Platform, please join our [Discord](https://discord.gg/ygFmfjy3Qx) community.
