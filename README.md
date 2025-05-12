@@ -14,11 +14,12 @@ For any questions on using the McPoogle search engine, please join our [Discord]
 
 ## Installation
 
+In your MCP client, enter the McPoogle remote MCP server address: https://mcp.mcpoogle.com/sse
+
+![carbon - 2025-05-08T155431 185](https://github.com/user-attachments/assets/ea465833-56d7-40be-b376-941a09384e40)
 
 ## Support
 
-Please refer to the [Graphlit API Documentation](https://docs.graphlit.dev/).
-
-For support with the Graphlit MCP Server, please submit a [GitHub Issue](https://github.com/graphlit/graphlit-mcp-server/issues).  
+For support with the McPoogle MCP Server, please submit a [GitHub Issue](https://github.com/graphlit/mcpoogle-mcp-server-remote/issues).  
 
 For further support with the Graphlit Platform, please join our [Discord](https://discord.gg/ygFmfjy3Qx) community.
