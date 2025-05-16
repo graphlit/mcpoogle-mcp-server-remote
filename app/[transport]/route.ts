@@ -42,7 +42,7 @@ const handler = createMcpHandler(
     streamableHttpEndpoint: "/mcp",
     sseMessageEndpoint: "/message",
     verboseLogs: true,
-    maxDuration: 800,
+    maxDuration: 60,
   }
 );
 

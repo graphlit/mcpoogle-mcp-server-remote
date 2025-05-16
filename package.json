@@ -19,7 +19,7 @@
   "author": "Unstruk Data Inc.",
   "license": "MIT",
   "dependencies": {
-    "@modelcontextprotocol/sdk": "^1.11.2",
+    "@modelcontextprotocol/sdk": "^1.11.3",
     "@vercel/mcp-adapter": "^0.2.4",
     "graphlit-client": "^1.0.20250508001",
     "next": "15.2.4",
