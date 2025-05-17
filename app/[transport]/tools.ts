@@ -17,7 +17,7 @@ export function registerTools(server: any) {
     { 
         prompt: z.string().describe("LLM user prompt for MCP search.")
     },
-    async ({ prompt }) => {
+    async ({ prompt }: { prompt: string }) => {
         const client = new Graphlit();
 
         try {

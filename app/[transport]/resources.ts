@@ -38,7 +38,7 @@ export function registerResources(server: any) {
         }
         }
     }),
-    async (uri, variables) => {
+    async (uri: URL, variables: any) => {
         return {
         contents: []
         };
@@ -48,7 +48,7 @@ export function registerResources(server: any) {
     server.resource(
         "Content: Returns content metadata and complete Markdown text. Accepts content resource URI, i.e. contents://{id}, where 'id' is a content identifier.",
         new ResourceTemplate("contents://{id}", { list: undefined }),
-        async (uri: URL, variables) => {
+        async (uri: URL, variables: any) => {
             const id = variables.id as string;
             const client = new Graphlit();
 
