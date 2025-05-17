@@ -7,7 +7,7 @@ import {
     GetContentQuery,
 } from "graphlit-client/dist/generated/graphql-types.js";
 
-export function registerResources(server: McpServer) {
+export function registerResources(server: any) {
 
     server.resource(
     "Contents list: Returns list of content resources.",

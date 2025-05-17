@@ -8,7 +8,7 @@ import {
     RerankingModelServiceTypes 
 } from "graphlit-client/dist/generated/graphql-types.js";
 
-export function registerTools(server: McpServer) {
+export function registerTools(server: any) {
     server.tool(
     "searchMcpServers",
     `Retrieve relevant MCP Servers and Tools from McPoogle search engine. Use this tool to find MCP Servers and Tools that match a given user prompt. The search results will include the name, description, and GitHub URL of each MCP Server.

@@ -1,6 +1,7 @@
 import { createMcpHandler } from "@vercel/mcp-adapter";
 import { registerTools } from './tools';
 import { registerResources } from './resources';
+import { NextRequest, NextResponse } from 'next/server';
 
 const DEFAULT_INSTRUCTIONS = `
 You are provided a set of MCP tools and resources that integrate with the [McPoogle](https://www.mcpoogle.com) search engine for MCP Servers and Tools.
@@ -18,7 +19,7 @@ McPoogle is a search engine for [MCP](https://modelcontextprotocol.io) (Model Co
 
 Built by 🦝 in Seattle with [Graphlit](https://www.graphlit.com). 
 
-McPoogle is under active development, and released in ‘alpha’. McPoogle can make mistakes, and may have unscheduled maintenance. Uses data ingested from 7000+ GitHub MCP Server READMEs, MCP docs, and other public sources.
+McPoogle is under active development, and released in 'alpha'. McPoogle can make mistakes, and may have unscheduled maintenance. Uses data ingested from 7000+ GitHub MCP Server READMEs, MCP docs, and other public sources.
 
 Love it? Hate it? Tell us on the Graphlit [Discord](https://discord.gg/ygFmfjy3Qx) #mcpoogle channel.
 
@@ -28,7 +29,8 @@ Try our [Graphlit MCP Server](https://github.com/graphlit/graphlit-mcp-server) t
 Ingest anything from Slack, Discord, websites, Google Drive, email, Jira, Linear or GitHub into a Graphlit project - and then search and retrieve relevant knowledge within an MCP client like Cursor, Windsurf, Goose or Cline.
 `
 
-const handler = createMcpHandler(
+// Create the MCP handler with SSE support
+const mcpHandler = createMcpHandler(
   (server) => {
     registerTools(server);
     registerResources(server);
@@ -38,12 +40,59 @@ const handler = createMcpHandler(
   },
   {
     redisUrl: process.env.REDIS_URL,
-    sseEndpoint: "/sse",
-    streamableHttpEndpoint: "/mcp",
-    sseMessageEndpoint: "/message",
+    basePath: "/",
     verboseLogs: true,
     maxDuration: 60,
   }
 );
 
-export { handler as GET, handler as POST, handler as DELETE };
+// Add CORS headers to the response
+function addCorsHeaders(response: Response): Response {
+  const headers = new Headers(response.headers);
+  
+  // Set CORS headers
+  headers.set('Access-Control-Allow-Origin', '*');
+  headers.set('Access-Control-Allow-Methods', 'GET, POST, DELETE, OPTIONS');
+  headers.set('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  headers.set('Access-Control-Allow-Credentials', 'true');
+  
+  // For SSE connections
+  headers.set('Cache-Control', 'no-cache');
+  headers.set('Connection', 'keep-alive');
+  
+  return new Response(response.body, {
+    status: response.status,
+    statusText: response.statusText,
+    headers
+  });
+}
+
+// Handle OPTIONS requests for CORS preflight
+export async function OPTIONS(request: NextRequest) {
+  return new NextResponse(null, {
+    status: 204,
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'GET, POST, DELETE, OPTIONS',
+      'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+      'Access-Control-Allow-Credentials': 'true',
+      'Access-Control-Max-Age': '86400',
+    },
+  });
+}
+
+// Wrap the handler with CORS support
+export async function GET(request: NextRequest) {
+  const response = await mcpHandler(request);
+  return addCorsHeaders(response);
+}
+
+export async function POST(request: NextRequest) {
+  const response = await mcpHandler(request);
+  return addCorsHeaders(response);
+}
+
+export async function DELETE(request: NextRequest) {
+  const response = await mcpHandler(request);
+  return addCorsHeaders(response);
+}
