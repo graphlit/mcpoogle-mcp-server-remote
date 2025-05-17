@@ -1,5 +1,5 @@
 import { Graphlit } from "graphlit-client";
-import { McpServer, ResourceTemplate } from "@modelcontextprotocol/sdk/server/mcp.js";
+import { ResourceTemplate } from "@modelcontextprotocol/sdk/server/mcp.js";
 import {
     ContentTypes,
     ContentFilter, 
