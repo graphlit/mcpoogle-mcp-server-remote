@@ -52,8 +52,8 @@ export function registerTools(server: any) {
         const error = err as Error;
         return {
             content: [{
-            type: "text",
-            text: `Error: ${error.message}`
+                type: "text",
+                text: `Error: ${error.message}`
             }],
             isError: true
         };
